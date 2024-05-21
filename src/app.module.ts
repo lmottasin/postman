@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from "./user/entities/user.entity";
+import { User } from './user/entities/user.entity';
 import { PostModule } from './post/post.module';
 
 @Module({
@@ -17,12 +17,12 @@ import { PostModule } from './post/post.module';
       entities: [User],
       database: 'nptc',
       synchronize: true,
-      logging: true,
+      logging: true
     }),
     UserModule,
-    PostModule,
+    PostModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
 export class AppModule {}

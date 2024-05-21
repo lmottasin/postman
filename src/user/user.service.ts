@@ -8,11 +8,11 @@ import { User } from './entities/user.entity';
 @Injectable()
 export class UserService {
   /**
-   * Here, we have used data mapper approch for this tutorial that is why we
-   * injecting repository here. Another approch can be Active records.
+   * Here, we have used data mapper approach for this tutorial that is why we're
+   * injecting repository here. Another approach can be Active records.
    */
   constructor(
-    @InjectRepository(User) private readonly userRepository: Repository<User>,
+    @InjectRepository(User) private readonly userRepository: Repository<User>
   ) {}
 
   /**
@@ -54,7 +54,7 @@ export class UserService {
    * parameter along with passed updated data
    * @param id is type of number, which represent the id of user.
    * @param updateUserDto this is partial type of createUserDto.
-   * @returns promise of udpate user
+   * @returns promise of update user
    */
   updateUser(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     const user: User = new User();
@@ -70,9 +70,15 @@ export class UserService {
   /**
    * this function is used to remove or delete user from database.
    * @param id is the type of number, which represent id of user
-   * @returns nuber of rows deleted or affected
+   * @returns number of rows deleted or affected
    */
   removeUser(id: number): Promise<{ affected?: number }> {
     return this.userRepository.delete(id);
+  }
+
+  findByEmail(email: string): Promise<User | undefined> {
+    return this.userRepository.findOne({
+      where: { email }
+    });
   }
 }

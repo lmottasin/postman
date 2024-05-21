@@ -6,7 +6,7 @@ import {
   IsNotEmpty,
   IsString,
   Matches,
-  MinLength,
+  MinLength
 } from 'class-validator';
 
 const passwordRegEx =
